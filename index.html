@@ -1,586 +1,67 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đèn Kéo Quân - Portfolio Nguyễn Đức Quang</title>
+    <title>Memory Card Flip Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: #ffffff;
-            color: #000000;
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Header và Navigation */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            margin-bottom: 40px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-        }
-        
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: #111111;
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: #f72585;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-        
-        nav a {
-            color: #000000;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 18px;
-            transition: color 0.3s;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-        
-        nav a:hover {
-            color: #4cc9f0;
-            background-color: rgba(76, 201, 240, 0.1);
-        }
-        
-        nav a.active {
-            color: #f72585;
-            background-color: rgba(247, 37, 133, 0.1);
-        }
-        
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 40px 0 60px;
-        }
-        
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            color: #111111;
-        }
-        
-        .hero p {
-            font-size: 20px;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            color: #333333;
-        }
-        
-        /* Đèn kéo quân */
-        .lantern-section {
-            background: #f8f8f8;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 60px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-        }
-        
-        .section-title {
-            font-size: 32px;
-            color: #f72585;
-            margin-bottom: 30px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: #4cc9f0;
-        }
-        
-        .lantern-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 40px 0;
-            position: relative;
-        }
-        
-        .lantern {
-            width: 300px;
-            height: 400px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.1s linear;
-            margin-bottom: 30px;
-        }
-        
-        .face {
-            position: absolute;
-            width: 300px;
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-            backface-visibility: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #000000;
-            font-size: 24px;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
-            border: 5px solid #f72585;
-            overflow: hidden;
-        }
-        
-        .face::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.28);
-            z-index: -1;
-        }
-        
-        .face-1 { transform: rotateY(0deg) translateZ(250px); background-image: url('https://scontent.fdad3-3.fna.fbcdn.net/v/t39.30808-6/619285435_769940542795273_5375651489415040008_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHW4vC-U00kffT99n8JpllappE3--l6bM6mkTf76XpsznJd4XID3MPqzNd0dsUeh7CKzZ0Ucrjf5YbDgGxWETNF&_nc_ohc=ydKt0hkZQ-4Q7kNvwHssifc&_nc_oc=AdlciFU6WRX8YJmb9pAPw6tdPma0b7SB3Y4Zup3Cm0f0beLs1QwfM9MORHMjZ0BofR1ynk6c8StKE1JIbA-jijLq&_nc_zt=23&_nc_ht=scontent.fdad3-3.fna&_nc_gid=so32xfTcwplXRPh_aasenQ&oh=00_Afv3Oo6k0-iSAdzqhBYgstHo6sPM8m-QNWayewqF0tglrg&oe=69872631'); }
-        .face-2 { transform: rotateY(60deg) translateZ(250px); background-image: url('https://scontent.fdad3-3.fna.fbcdn.net/v/t39.30808-6/616106268_768206436302017_993752532612794177_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFFZ_HQoAEIcAMvP6Kks29Vhgc0keukvvCGBzSR66S-8JOKIvnnjzkZUIC6uR-8lNVTxf2a1wX6EVDrRYkBMT5F&_nc_ohc=j_OOPw_hTSAQ7kNvwE_ts6Y&_nc_oc=Adn7Yh4oR8ONT7QWUF2LjOhElrAipcm8e2Uiue72wumfbguhiq4yc911QHZpbpXYeX_2U-qzui0szjsD5gIiRjc8&_nc_zt=23&_nc_ht=scontent.fdad3-3.fna&_nc_gid=Is5_P6zyaOuKev92kq8Hvw&oh=00_Afvhan0cNO_RE420wZc8Nimn48BD6K1yMMQ3ykN6i4jSrQ&oe=69874257'); }
-        .face-3 { transform: rotateY(120deg) translateZ(250px); background-image: url('https://scontent.fdad3-6.fna.fbcdn.net/v/t39.30808-6/558889277_690148204107841_7672971503852327987_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFyr36vH-FyHxd0YC-fQ_7jV3aPSjQ-p1ZXdo9KND6nVgclKXHmzl6MFJqPcM1GN88SsvXa_tMeyhacuUV9chT5&_nc_ohc=RkriuCUE0voQ7kNvwHqMOnB&_nc_oc=AdlSHTo98-3KN5fONke4z2eKqwdhV9Gnw5CTEtI8Dvmw5GAyvj6LSs7v8Orq0GXf24p38XVi1X5W205-HknRXitx&_nc_zt=23&_nc_ht=scontent.fdad3-6.fna&_nc_gid=ypfobBMqJ4XAfCSIHH_fTw&oh=00_Aftqvv5dgjIWCGMsr4f_fkrME8URvmp5yMrGGtbPFTpA2Q&oe=69872AD8'); }
-        .face-4 { transform: rotateY(180deg) translateZ(250px); background-image: url('https://scontent.fdad3-3.fna.fbcdn.net/v/t39.30808-6/520872221_623454627443866_4099144014984129362_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeGRE8x2xa6tv7SMPly2RTj0hKap7xn4ahKEpqnvGfhqEmqFiE0E558Zo5z26w23rfXOaXgNmp0YEUjvyy3fEO95&_nc_ohc=DZARYQZZwXQQ7kNvwFzBgAC&_nc_oc=AdnFrCgWnIwGPfXHDy9MNVji7nKm3GUnr6RXi8b0d_5iIeyZKc6tlNIfaAQSumybIdyxQ1od2-INH2RtLxfAD09o&_nc_zt=23&_nc_ht=scontent.fdad3-3.fna&_nc_gid=INJ4IVecBKnXm9mj1vVPuQ&oh=00_AfubqyopshBSmreiUcRjoNPbSIV7AE48vn7Y6rt-0_2FoQ&oe=69872714'); }
-        .face-5 { transform: rotateY(240deg) translateZ(250px); background-image: url('https://scontent.fdad3-3.fna.fbcdn.net/v/t39.30808-6/522299387_623157554140240_7676503113676875567_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHwKfD405hvcF_NKzknbzJ4C6qkrCmytWsLqqSsKbK1a-fQyTBEeqd6Gc00OArjprY1wRRJMDCvE3bnGbAjnAwg&_nc_ohc=SSqmm6eGMbIQ7kNvwH1jLGI&_nc_oc=Adnfa4zhtu0gsN8W42ykMnKLjCdLuXoqQzLlNdxnIvXqPgOUiWO5Ep-AZgavUuMj28ojSeD0szXzDsV8ScwBnVxg&_nc_zt=23&_nc_ht=scontent.fdad3-3.fna&_nc_gid=x9QxSa88zeMSCurMzoG29w&oh=00_AfuLghTybGLTkQkrD3USKf99uvVyLuq0ciZCFgQXQLZQ0Q&oe=69874592'); }
-        .face-6 { transform: rotateY(300deg) translateZ(250px); background-image: url('https://scontent.fdad3-3.fna.fbcdn.net/v/t39.30808-6/617336742_925317776723977_9085770497282472629_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHGkxwFurWFQqK4Ric5xT0zXMaBBg2MElFcxoEGDYwSUWNQD1gTxXqenJzNo28vrlWBG7NtkzxeRN7MjlFMHSzk&_nc_ohc=uYTgmB5CLBUQ7kNvwHDOxrp&_nc_oc=AdkoRYWH4LG9E3RZzBueBuKZ99naSUt5i0zKeZ4MyfodAn6MowS4Z7pQAb1R9Xy6gHqZAXk24z2BUQb_nyWMQRU9&_nc_zt=23&_nc_ht=scontent.fdad3-3.fna&_nc_gid=VkVA8e4PxQoKmr_lDrz3_Q&oh=00_AfvCRCxbgcMT62FqvqVkDgMU4ggO2aOdxQB_CrYvYlSyRQ&oe=69872F71'); }
-        
-        .controls {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        button {
-            padding: 12px 24px;
-            background: linear-gradient(90deg, #f72585, #b5179e);
-            color: #000000;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
-        }
-        
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(247, 37, 133, 0.6);
-        }
-        
-        button:active {
-            transform: translateY(0);
-        }
-        
-        button.secondary {
-            background: linear-gradient(90deg, #4cc9f0, #4895ef);
-            box-shadow: 0 5px 15px rgba(76, 201, 240, 0.4);
-        }
-        
-        button.secondary:hover {
-            box-shadow: 0 8px 20px rgba(76, 201, 240, 0.6);
-        }
-        
-        .instructions {
-            background: #ffffff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-            max-width: 600px;
-            text-align: center;
-            font-size: 18px;
-            border-left: 4px solid #f72585;
-            color: #000000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-        }
-        
-        /* Portfolio Section */
-        .portfolio-section {
-            margin-top: 60px;
-        }
-        
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .portfolio-item {
-            background: #f8f8f8;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-        
-        .portfolio-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .portfolio-content {
-            padding: 20px;
-        }
-        
-        .portfolio-content h3 {
-            color: #111111;
-            margin-bottom: 10px;
-            font-size: 22px;
-        }
-        
-        .portfolio-content p {
-            color: #333333;
-            margin-bottom: 15px;
-        }
-        
-        .portfolio-link {
-            color: #f72585;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s;
-        }
-        
-        .portfolio-link:hover {
-            color: #4cc9f0;
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 80px;
-            border-top: 1px solid rgba(0, 0, 0, 0.06);
-            color: #333333;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .social-links a {
-            color: #000000;
-            font-size: 24px;
-            transition: color 0.3s, transform 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: #4cc9f0;
-            transform: translateY(-5px);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .lantern {
-                width: 250px;
-                height: 350px;
-            }
-            
-            .face {
-                width: 250px;
-                height: 350px;
-            }
-            
-            .face-1, .face-2, .face-3, .face-4, .face-5, .face-6 {
-                transform-origin: center;
-                transform: rotateY(calc(var(--i) * 60deg)) translateZ(200px);
-            }
-            
-            nav ul {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .lantern {
-                width: 200px;
-                height: 300px;
-            }
-            
-            .face {
-                width: 200px;
-                height: 300px;
-            }
-            
-            .face-1, .face-2, .face-3, .face-4, .face-5, .face-6 {
-                transform: rotateY(calc(var(--i) * 60deg)) translateZ(150px);
-            }
-            
-            .controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            button {
-                width: 100%;
-                max-width: 300px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Header và Navigation -->
-        <header>
-            <a href="#" class="logo">NguyenDucQuang<span>.</span></a>
-            <nav>
-                <ul>
-                    <li><a href="#" class="active">Trang chủ</a></li>
-                    <li><a href="#lantern">Đèn kéo quân</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Liên hệ</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1>Nguyễn Đức Quang</h1>
-            <p>Chào mừng đến với trang portfolio của tôi. Tôi là lập trình viên web với đam mê sáng tạo những trang web bằng HTML, CSS và JavaScript.</p>
-            <p>Dưới đây là dự án đèn kéo quân - một mô hình 3D tương tác với hiệu ứng quay và dừng khi di chuột.</p>
-        </section>
-        
-        <!-- Đèn kéo quân -->
-        <section class="lantern-section" id="lantern">
-            <h2 class="section-title">Đèn Kéo Quân</h2>
-            <p style="text-align: center; margin-bottom: 30px; font-size: 18px;">Đây là tôi, Nguyễn Đức Quang.</p>
-            
-            <div class="lantern-container">
-                <div class="lantern" id="lantern3d">
-                    <div class="face face-1"><span>Ảnh 1</span></div>
-                    <div class="face face-2"><span>Ảnh 2</span></div>
-                    <div class="face face-3"><span>Ảnh 3</span></div>
-                    <div class="face face-4"><span>Ảnh 4</span></div>
-                    <div class="face face-5"><span>Ảnh 5</span></div>
-                    <div class="face face-6"><span>Ảnh 6</span></div>
-                </div>
-                
-                <div class="controls">
-                    <button id="startBtn"><i class="fas fa-play"></i> Bắt đầu quay</button>
-                    <button id="stopBtn" class="secondary"><i class="fas fa-stop"></i> Dừng quay</button>
-                    <button id="reverseBtn" class="secondary"><i class="fas fa-retweet"></i> Đảo chiều</button>
-                </div>
-                
-                <div class="instructions">
-                    <p><i class="fas fa-mouse-pointer"></i> Di chuột vào đèn để dừng quay, di chuột ra để tiếp tục quay</p>
-                    <p><i class="fas fa-sliders-h"></i> Sử dụng các nút bên trên để điều khiển đèn</p>
-                </div>
+    <header>
+        <h1><i class="fas fa-gamepad"></i> Memory Card Flip Game</h1>
+        <p class="game-description">Test your memory! Flip cards to find matching pairs. Try to complete the game with the fewest moves possible.</p>
+    </header>
+
+    <main>
+        <section class="game-info">
+            <div class="info-box">
+                <div class="info-label">Moves</div>
+                <div class="info-value" id="moves">0</div>
+            </div>
+            <div class="info-box">
+                <div class="info-label">Matches Found</div>
+                <div class="info-value" id="matches">0 / 4</div>
+            </div>
+            <div class="info-box">
+                <div class="info-label">Time</div>
+                <div class="info-value" id="timer">0s</div>
             </div>
         </section>
-        
-        <!-- Portfolio Section -->
-        <section class="portfolio-section" id="portfolio">
-            <h2 class="section-title">Portfolio Của Tôi</h2>
-            
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Website thương mại điện tử" class="portfolio-img">
-                    <div class="portfolio-content">
-                        <h3>Website Thương Mại Điện Tử</h3>
-                        <p>Thiết kế và phát triển website bán hàng với đầy đủ tính năng từ giỏ hàng đến thanh toán.</p>
-                        <a href="#" class="portfolio-link">Xem chi tiết <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Ứng dụng quản lý công việc" class="portfolio-img">
-                    <div class="portfolio-content">
-                        <h3>Ứng Dụng Quản Lý Công Việc</h3>
-                        <p>Ứng dụng web giúp quản lý công việc và dự án với giao diện trực quan và dễ sử dụng.</p>
-                        <a href="#" class="portfolio-link">Xem chi tiết <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Game tương tác" class="portfolio-img">
-                    <div class="portfolio-content">
-                        <h3>Game Tương Tác Web</h3>
-                        <p>Phát triển game tương tác trên nền web với HTML5 Canvas và JavaScript.</p>
-                        <a href="#" class="portfolio-link">Xem chi tiết <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="https://nguyen-ducquang.github.io/newprofile/" class="portfolio-link" style="font-size: 20px;">
-                    <i class="fas fa-external-link-alt"></i> Xem toàn bộ portfolio của tôi tại đây
-                </a>
+
+        <section class="game-container">
+            <div class="game-board" id="game-board">
+                <!-- Cards will be generated by JavaScript -->
             </div>
         </section>
-        
-        <!-- Footer -->
-        <footer id="contact">
-            <h2 class="section-title">Liên Hệ</h2>
-            <p>Hãy kết nối với tôi qua các mạng xã hội hoặc gửi email</p>
-            
-            <div class="social-links">
-                <a href="https://www.facebook.com/gnauq.notwang16"><i class="fab fa-facebook"></i></a>
-                <a href="https://github.com/Nguyen-DucQuang"><i class="fab fa-github"></i></a>
-                
-            </div>
-            
-            <p>Email: sssquang992@gmail.com</p>
-            <p>Điện thoại: +84 377 487 457</p>
-            
-            <p style="margin-top: 30px;">© 2026 Nguyễn Đức Quang. Tất cả các quyền được bảo lưu.</p>
-        </footer>
+
+        <section class="controls">
+            <button id="reset-btn">
+                <i class="fas fa-redo"></i> Reset Game
+            </button>
+            <button id="new-game-btn">
+                <i class="fas fa-plus-circle"></i> New Game
+            </button>
+        </section>
+    </main>
+
+    <div class="win-message" id="win-message">
+        <div class="win-content">
+            <h2><i class="fas fa-trophy"></i> Congratulations!</h2>
+            <p>You've matched all pairs in <span id="win-moves">0</span> moves and <span id="win-time">0</span> seconds!</p>
+            <button id="play-again-btn">
+                <i class="fas fa-play"></i> Play Again
+            </button>
+        </div>
     </div>
 
-    <script>
-        // Lấy phần tử đèn
-        const lantern = document.getElementById('lantern3d');
-        const startBtn = document.getElementById('startBtn');
-        const stopBtn = document.getElementById('stopBtn');
-        const reverseBtn = document.getElementById('reverseBtn');
+    <footer>
         
-        // Biến điều khiển
-        let isRotating = true;
-        let rotationSpeed = 1;
-        let rotationDirection = 1; // 1: thuận chiều kim đồng hồ, -1: ngược chiều
-        let rotationAngle = 0;
-        let animationId = null;
-        
-        // Hàm quay đèn
-        function rotateLantern() {
-            if (isRotating) {
-                rotationAngle += rotationSpeed * rotationDirection;
-                lantern.style.transform = `rotateY(${rotationAngle}deg)`;
-            }
-            animationId = requestAnimationFrame(rotateLantern);
-        }
-        
-        // Bắt đầu quay đèn
-        function startRotation() {
-            isRotating = true;
-            startBtn.disabled = true;
-            stopBtn.disabled = false;
-        }
-        
-        // Dừng quay đèn
-        function stopRotation() {
-            isRotating = false;
-            startBtn.disabled = false;
-            stopBtn.disabled = true;
-        }
-        
-        // Đảo chiều quay
-        function reverseRotation() {
-            rotationDirection *= -1;
-            reverseBtn.innerHTML = rotationDirection === 1 
-                ? '<i class="fas fa-retweet"></i> Đảo chiều' 
-                : '<i class="fas fa-retweet"></i> Trở lại chiều cũ';
-        }
-        
-        // Sự kiện khi di chuột vào đèn
-        lantern.addEventListener('mouseenter', () => {
-            isRotating = false;
-        });
-        
-        // Sự kiện khi di chuột ra khỏi đèn
-        lantern.addEventListener('mouseleave', () => {
-            if (!stopBtn.disabled) {
-                isRotating = true;
-            }
-        });
-        
-        // Gán sự kiện cho các nút
-        startBtn.addEventListener('click', startRotation);
-        stopBtn.addEventListener('click', stopRotation);
-        reverseBtn.addEventListener('click', reverseRotation);
-        
-        // Khởi tạo trạng thái ban đầu
-        stopRotation(); // Đèn bắt đầu ở trạng thái dừng
-        rotateLantern(); // Bắt đầu vòng lặp animation
-        
-        // Hiệu ứng cho navigation
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Xóa active class từ tất cả các link
-                document.querySelectorAll('nav a').forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                // Thêm active class cho link được click
-                this.classList.add('active');
-                
-                // Cuộn đến phần tương ứng
-                const targetId = this.getAttribute('href');
-                if (targetId !== '#') {
-                    const targetSection = document.querySelector(targetId);
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-        
-        // Thêm hiệu ứng cho portfolio items
-        document.querySelectorAll('.portfolio-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px)';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-    </script>
+        <div class="instructions">
+            <p><strong>How to play:</strong> Click on cards to flip them. Find two matching cards in a row to make a pair. Complete all 4 pairs to win!</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
