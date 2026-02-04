@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3: Đồng hồ đếm ngược</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/avatar.jpg" alt="Avatar">
+                <span>231A290025</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                <li><a href="baitap1.html"><i class="fas fa-shopping-cart"></i> Bài 1: Sản Phẩm</a></li>
+                <li><a href="baitap2.html"><i class="fas fa-user-plus"></i> Bài 2: Đăng Ký</a></li>
+                <li><a href="baitap3.html"><i class="fas fa-clock"></i> Bài 3: Đồng Hồ</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> Giới Thiệu</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Liên Hệ</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="exercise-container">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Quay lại trang chủ
+            </a>
+            
+            <h1 class="exercise-title">Bài 3: Đồng hồ đếm ngược 10 phút</h1>
+            
+            <div class="countdown-container">
+                <div id="countdownDisplay" class="countdown-display">10:00</div>
+                
+                <div class="countdown-controls">
+                    <button id="startBtn" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Bắt đầu
+                    </button>
+                    <button id="pauseBtn" class="btn btn-secondary" disabled>
+                        <i class="fas fa-pause"></i> Tạm dừng
+                    </button>
+                    <button id="resetBtn" class="btn btn-tertiary">
+                        <i class="fas fa-redo"></i> Đặt lại
+                    </button>
+                </div>
+                
+                <div id="statusMessage" style="margin-top: 1rem; text-align: center;"></div>
+            </div>
+            
+            <div class="explanation">
+                <h3><i class="fas fa-lightbulb"></i> Giải thích logic tư duy:</h3>
+                <div class="explanation-content">
+                    <p><strong>1. Xử lý interval tránh memory leak:</strong></p>
+                    <ul>
+                        <li>Luôn lưu reference của <code>setInterval</code> vào biến để có thể clear</li>
+                        <li>Clear interval trước khi tạo interval mới (tránh chồng interval)</li>
+                        <li>Clear interval khi component unmount (trong Single Page App)</li>
+                        <li>Trong bài này, clear interval khi pause/reset/hết giờ</li>
+                    </ul>
+                    
+                    <p><strong>2. Tích hợp với Domain/Hosting khi deploy:</strong></p>
+                    <ul>
+                        <li>Đồng bộ thời gian với server để tránh sai lệch do client</li>
+                        <li>Sử dụng API như <code>worldtimeapi.org</code> hoặc server time</li>
+                        <li>Tính toán offset giữa client và server time</li>
+                        <li>Trong bài này, demo bằng cách lấy server time giả định</li>
+                    </ul>
+                    
+                    <p><strong>3. Animation và UX:</strong></p>
+                    <ul>
+                        <li>Thêm animation khi thời gian dưới 1 phút</li>
+                        <li>Hiển thị modal thay vì <code>alert()</code> để UX tốt hơn</li>
+                        <li>Cập nhật trạng thái nút bấm rõ ràng (enabled/disabled)</li>
+                        <li>Format thời gian đẹp (MM:SS) với leading zero</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for timer completion -->
+    <div id="timeUpModal" class="modal">
+        <div class="modal-content">
+            <i class="fas fa-bell" style="font-size: 3rem; color: #d32f2f; margin-bottom: 1rem;"></i>
+            <h2>Hết giờ!</h2>
+            <p>Đồng hồ đếm ngược đã kết thúc.</p>
+            <button id="closeModalBtn" class="btn btn-primary" style="margin-top: 1rem;">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bài Tập Thực Hành</h3>
+                <p>Trang web tổng hợp các bài tập thực hành môn Lập trình Web</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="baitap1.html">Bài 1: Sản phẩm</a></li>
+                    <li><a href="baitap2.html">Bài 2: Đăng ký</a></li>
+                    <li><a href="baitap3.html">Bài 3: Đồng hồ</a></li>
+                    
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Liên hệ</h3>
+                <p>Email: QUANG231A290025@st.vhu.edu.vn</p>
+                <p>Điện thoại: 0377 487 457</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NguyenDucQuang. Tất cả các quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Timer variables
+        let totalSeconds = 10 * 60; // 10 minutes in seconds
+        let remainingSeconds = totalSeconds;
+        let timerInterval = null;
+        let isRunning = false;
+        let isPaused = false;
+        
+        // DOM elements
+        const countdownDisplay = document.getElementById('countdownDisplay');
+        const startBtn = document.getElementById('startBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const statusMessage = document.getElementById('statusMessage');
+        const timeUpModal = document.getElementById('timeUpModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        
+        // Format time as MM:SS
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        // Update display
+        function updateDisplay() {
+            countdownDisplay.textContent = formatTime(remainingSeconds);
+            
+            // Add warning animation when less than 1 minute
+            if (remainingSeconds <= 60 && remainingSeconds > 0) {
+                countdownDisplay.classList.add('timer-warning');
+            } else {
+                countdownDisplay.classList.remove('timer-warning');
+            }
+        }
+        
+        // Start timer
+        function startTimer() {
+            if (isRunning) return;
+            
+            isRunning = true;
+            isPaused = false;
+            
+            startBtn.disabled = true;
+            pauseBtn.disabled = false;
+            
+            statusMessage.textContent = "Đồng hồ đang chạy...";
+            statusMessage.style.color = "#388e3c";
+            
+            // Clear any existing interval (safety measure)
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+            
+            // Start new interval
+            timerInterval = setInterval(() => {
+                remainingSeconds--;
+                updateDisplay();
+                
+                if (remainingSeconds <= 0) {
+                    stopTimer();
+                    showTimeUpModal();
+                }
+            }, 1000);
+        }
+        
+        // Pause timer
+        function pauseTimer() {
+            if (!isRunning) return;
+            
+            isRunning = false;
+            isPaused = true;
+            
+            clearInterval(timerInterval);
+            timerInterval = null;
+            
+            startBtn.disabled = false;
+            startBtn.innerHTML = '<i class="fas fa-play"></i> Tiếp tục';
+            pauseBtn.disabled = true;
+            
+            statusMessage.textContent = "Đồng hồ đã tạm dừng";
+            statusMessage.style.color = "#ff9800";
+        }
+        
+        // Reset timer
+        function resetTimer() {
+            isRunning = false;
+            isPaused = false;
+            
+            clearInterval(timerInterval);
+            timerInterval = null;
+            
+            remainingSeconds = totalSeconds;
+            updateDisplay();
+            
+            startBtn.disabled = false;
+            startBtn.innerHTML = '<i class="fas fa-play"></i> Bắt đầu';
+            pauseBtn.disabled = true;
+            
+            statusMessage.textContent = "Đồng hồ đã được đặt lại";
+            statusMessage.style.color = "#1a237e";
+            
+            countdownDisplay.classList.remove('timer-warning');
+        }
+        
+        // Stop timer (internal use)
+        function stopTimer() {
+            isRunning = false;
+            isPaused = false;
+            
+            clearInterval(timerInterval);
+            timerInterval = null;
+            
+            startBtn.disabled = false;
+            startBtn.innerHTML = '<i class="fas fa-play"></i> Bắt đầu';
+            pauseBtn.disabled = true;
+            
+            statusMessage.textContent = "Đồng hồ đã dừng";
+            statusMessage.style.color = "#d32f2f";
+        }
+        
+        // Show time's up modal
+        function showTimeUpModal() {
+            timeUpModal.classList.add('active');
+        }
+        
+        // Hide time's up modal
+        function hideTimeUpModal() {
+            timeUpModal.classList.remove('active');
+        }
+        
+        // Get server time (simulated for demo)
+        function getServerTime() {
+            // In real app, this would fetch from server API
+            // For demo, we'll simulate server time as current time
+            return new Date();
+        }
+        
+        // Sync with server time (demo version)
+        function syncWithServerTime() {
+            const serverTime = getServerTime();
+            const clientTime = new Date();
+            
+            // Calculate offset (in milliseconds)
+            const offset = clientTime - serverTime;
+            
+            // In real app, you would adjust timer based on offset
+            console.log(`Client-Server time offset: ${offset}ms`);
+            
+            // Show sync status
+            statusMessage.textContent = `Đã đồng bộ thời gian (offset: ${Math.abs(offset)}ms)`;
+            statusMessage.style.color = "#7b1fa2";
+            
+            // Clear message after 3 seconds
+            setTimeout(() => {
+                if (!isRunning && !isPaused) {
+                    statusMessage.textContent = "Sẵn sàng";
+                    statusMessage.style.color = "#1a237e";
+                }
+            }, 3000);
+        }
+        
+        // Event listeners
+        startBtn.addEventListener('click', startTimer);
+        pauseBtn.addEventListener('click', pauseTimer);
+        resetBtn.addEventListener('click', resetTimer);
+        closeModalBtn.addEventListener('click', hideTimeUpModal);
+        
+        // Sync time on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDisplay();
+            syncWithServerTime();
+            
+            // Auto-sync every 30 seconds (in real app)
+            setInterval(syncWithServerTime, 30000);
+            
+            // Close modal when clicking outside
+            timeUpModal.addEventListener('click', function(e) {
+                if (e.target === timeUpModal) {
+                    hideTimeUpModal();
+                }
+            });
+            
+            // Clean up interval when page is unloaded
+            window.addEventListener('beforeunload', function() {
+                if (timerInterval) {
+                    clearInterval(timerInterval);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

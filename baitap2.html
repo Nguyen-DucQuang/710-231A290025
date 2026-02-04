@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2: Form đăng ký</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/avatar.jpg" alt="Avatar">
+                <span>231A290025</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                <li><a href="baitap1.html"><i class="fas fa-shopping-cart"></i> Bài 1: Sản Phẩm</a></li>
+                <li><a href="baitap2.html"><i class="fas fa-user-plus"></i> Bài 2: Đăng Ký</a></li>
+                <li><a href="baitap3.html"><i class="fas fa-clock"></i> Bài 3: Đồng Hồ</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> Giới Thiệu</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Liên Hệ</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="exercise-container">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Quay lại trang chủ
+            </a>
+            
+            <h1 class="exercise-title">Bài 2: Form đăng ký người dùng</h1>
+            
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Họ và tên *</label>
+                    <input type="text" id="name" name="name" required>
+                    <div class="error-message" id="nameError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Mật khẩu *</label>
+                    <input type="password" id="password" name="password" required>
+                    <div class="error-message" id="passwordError"></div>
+                    <small>Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Xác nhận mật khẩu *</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <div class="error-message" id="confirmPasswordError"></div>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">Tôi đồng ý với các điều khoản sử dụng *</label>
+                    <div class="error-message" id="termsError"></div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">
+                    <i class="fas fa-user-plus"></i> Đăng ký
+                </button>
+            </form>
+            
+            <div id="successMessage" class="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <p>Đăng ký thành công! Thông tin đã được lưu vào LocalStorage.</p>
+            </div>
+            
+            <div class="explanation">
+                <h3><i class="fas fa-lightbulb"></i> Giải thích logic tư duy:</h3>
+                <div class="explanation-content">
+                    <p><strong>1. Xử lý sự kiện submit:</strong></p>
+                    <ul>
+                        <li>Sử dụng <code>preventDefault()</code> để ngăn form submit theo cách truyền thống</li>
+                        <li>Validate từng field ngay khi người dùng nhập (real-time validation)</li>
+                        <li>Validate toàn bộ form trước khi submit</li>
+                        <li>Hiển thị lỗi cụ thể cho từng field</li>
+                    </ul>
+                    
+                    <p><strong>2. Bảo mật dữ liệu cục bộ:</strong></p>
+                    <ul>
+                        <li>Không lưu mật khẩu dạng plain text trong LocalStorage</li>
+                        <li>Sử dụng hashing (trong thực tế) hoặc ít nhất là không lưu trực tiếp</li>
+                        <li>Giới hạn dữ liệu nhạy cảm lưu trữ client-side</li>
+                        <li>Xóa dữ liệu khi không cần thiết</li>
+                        <li>Trong bài này chỉ lưu tên và email để demo</li>
+                    </ul>
+                    
+                    <p><strong>3. Validation rules:</strong></p>
+                    <ul>
+                        <li>Email: Regex pattern kiểm tra định dạng email</li>
+                        <li>Mật khẩu: 8+ ký tự, có chữ hoa, chữ thường và số</li>
+                        <li>Xác nhận mật khẩu: Khớp với mật khẩu đã nhập</li>
+                        <li>Điều khoản: Phải được chọn</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="registeredUsers" style="margin-top: 2rem; display: none;">
+                <h3>Người dùng đã đăng ký (từ LocalStorage):</h3>
+                <div id="usersList"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bài Tập Thực Hành</h3>
+                <p>Trang web tổng hợp các bài tập thực hành môn Lập trình Web</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="baitap1.html">Bài 1: Sản phẩm</a></li>
+                    <li><a href="baitap2.html">Bài 2: Đăng ký</a></li>
+                    <li><a href="baitap3.html">Bài 3: Đồng hồ</a></li>
+                    
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Liên hệ</h3>
+                <p>Email: QUANG231A290025@st.vhu.edu.vn</p>
+                <p>Điện thoại: 0377 487 457</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NguyenDucQuang. Tất cả các quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Validation functions
+        function validateName(name) {
+            if (!name.trim()) return "Vui lòng nhập họ và tên";
+            if (name.length < 2) return "Họ và tên phải có ít nhất 2 ký tự";
+            return "";
+        }
+        
+        function validateEmail(email) {
+            if (!email.trim()) return "Vui lòng nhập email";
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) return "Email không hợp lệ";
+            
+            return "";
+        }
+        
+        function validatePassword(password) {
+            if (!password) return "Vui lòng nhập mật khẩu";
+            if (password.length < 8) return "Mật khẩu phải có ít nhất 8 ký tự";
+            
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            
+            if (!hasUpperCase || !hasLowerCase || !hasNumbers) {
+                return "Mật khẩu phải bao gồm chữ hoa, chữ thường và số";
+            }
+            
+            return "";
+        }
+        
+        function validateConfirmPassword(password, confirmPassword) {
+            if (!confirmPassword) return "Vui lòng xác nhận mật khẩu";
+            if (password !== confirmPassword) return "Mật khẩu xác nhận không khớp";
+            return "";
+        }
+        
+        function validateTerms(termsChecked) {
+            if (!termsChecked) return "Vui lòng đồng ý với điều khoản sử dụng";
+            return "";
+        }
+        
+        // Display error message
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = message ? 'block' : 'none';
+        }
+        
+        // Clear all errors
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(element => {
+                element.textContent = '';
+                element.style.display = 'none';
+            });
+        }
+        
+        // Save user to LocalStorage
+        function saveUserToLocalStorage(user) {
+            try {
+                // Get existing users or initialize empty array
+                const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+                
+                // Add new user
+                users.push({
+                    id: Date.now(), // Simple unique ID
+                    name: user.name,
+                    email: user.email,
+                    registeredAt: new Date().toISOString()
+                    // Note: In real app, NEVER store passwords in localStorage
+                });
+                
+                // Save back to localStorage
+                localStorage.setItem('registeredUsers', JSON.stringify(users));
+                return true;
+            } catch (error) {
+                console.error('Error saving to localStorage:', error);
+                return false;
+            }
+        }
+        
+        // Display registered users from LocalStorage
+        function displayRegisteredUsers() {
+            const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+            
+            if (users.length === 0) {
+                document.getElementById('registeredUsers').style.display = 'none';
+                return;
+            }
+            
+            const usersList = document.getElementById('usersList');
+            usersList.innerHTML = users.map(user => `
+                <div style="background: #f5f5f5; padding: 10px; margin: 5px 0; border-radius: 5px;">
+                    <strong>${user.name}</strong> (${user.email})<br>
+                    <small>Đăng ký: ${new Date(user.registeredAt).toLocaleDateString('vi-VN')}</small>
+                </div>
+            `).join('');
+            
+            document.getElementById('registeredUsers').style.display = 'block';
+        }
+        
+        // Form submission handler
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            clearErrors();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const termsChecked = document.getElementById('terms').checked;
+            
+            // Validate all fields
+            const nameError = validateName(name);
+            const emailError = validateEmail(email);
+            const passwordError = validatePassword(password);
+            const confirmPasswordError = validateConfirmPassword(password, confirmPassword);
+            const termsError = validateTerms(termsChecked);
+            
+            // Display errors if any
+            let hasError = false;
+            
+            if (nameError) {
+                showError('nameError', nameError);
+                hasError = true;
+            }
+            
+            if (emailError) {
+                showError('emailError', emailError);
+                hasError = true;
+            }
+            
+            if (passwordError) {
+                showError('passwordError', passwordError);
+                hasError = true;
+            }
+            
+            if (confirmPasswordError) {
+                showError('confirmPasswordError', confirmPasswordError);
+                hasError = true;
+            }
+            
+            if (termsError) {
+                showError('termsError', termsError);
+                hasError = true;
+            }
+            
+            // If no errors, save to LocalStorage
+            if (!hasError) {
+                const user = {
+                    name: name.trim(),
+                    email: email.trim(),
+                    // Note: In real app, password would be hashed server-side
+                };
+                
+                if (saveUserToLocalStorage(user)) {
+                    // Show success message
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Reset form
+                    document.getElementById('registrationForm').reset();
+                    
+                    // Show registered users
+                    displayRegisteredUsers();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 5000);
+                }
+            }
+        });
+        
+        // Real-time validation
+        document.getElementById('name').addEventListener('blur', function() {
+            showError('nameError', validateName(this.value));
+        });
+        
+        document.getElementById('email').addEventListener('blur', function() {
+            showError('emailError', validateEmail(this.value));
+        });
+        
+        document.getElementById('password').addEventListener('blur', function() {
+            showError('passwordError', validatePassword(this.value));
+        });
+        
+        document.getElementById('confirmPassword').addEventListener('blur', function() {
+            const password = document.getElementById('password').value;
+            showError('confirmPasswordError', validateConfirmPassword(password, this.value));
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            displayRegisteredUsers();
+        });
+    </script>
+</body>
+</html>

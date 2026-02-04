@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1: Danh sách sản phẩm</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/avatar.jpg" alt="Avatar">
+                <span>231A290025</span>
+            </div>
+             <ul class="nav-links">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                <li><a href="baitap1.html"><i class="fas fa-shopping-cart"></i> Bài 1: Sản Phẩm</a></li>
+                <li><a href="baitap2.html"><i class="fas fa-user-plus"></i> Bài 2: Đăng Ký</a></li>
+                <li><a href="baitap3.html"><i class="fas fa-clock"></i> Bài 3: Đồng Hồ</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> Giới Thiệu</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Liên Hệ</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="exercise-container">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Quay lại trang chủ
+            </a>
+            
+            <h1 class="exercise-title">Bài 1: Danh sách sản phẩm</h1>
+            
+            <div class="search-box">
+                <input type="search" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <div id="productList" class="product-grid">
+                <!-- Sản phẩm sẽ được hiển thị ở đây -->
+            </div>
+            
+            <div id="noResults" class="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <p>Không tìm thấy sản phẩm nào phù hợp với từ khóa tìm kiếm.</p>
+            </div>
+            
+            <div class="explanation">
+                <h3><i class="fas fa-lightbulb"></i> Giải thích logic tư duy:</h3>
+                <div class="explanation-content">
+                    <p><strong>1. Xử lý input người dùng:</strong></p>
+                    <ul>
+                        <li>Sử dụng <code>.toLowerCase()</code> để chuyển input về chữ thường, giúp tìm kiếm không phân biệt hoa/thường</li>
+                        <li>Loại bỏ khoảng trắng thừa bằng <code>.trim()</code></li>
+                        <li>Không sử dụng innerHTML với input người dùng để tránh XSS injection</li>
+                    </ul>
+                    
+                    <p><strong>2. Tối ưu tìm kiếm:</strong></p>
+                    <ul>
+                        <li>Sử dụng phương thức <code>.includes()</code> thay vì so sánh chính xác</li>
+                        <li>Debounce tìm kiếm để giảm số lần xử lý (trong trường hợp real-time search)</li>
+                        <li>Lọc mảng sản phẩm một lần và render lại toàn bộ</li>
+                    </ul>
+                    
+                    <p><strong>3. Responsive design:</strong></p>
+                    <ul>
+                        <li>Sử dụng CSS Grid với <code>auto-fill</code> để tự động điều chỉnh số cột</li>
+                        <li>Breakpoint rõ ràng cho mobile/tablet/desktop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bài Tập Thực Hành</h3>
+                <p>Trang web tổng hợp các bài tập thực hành môn Lập trình Web</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="baitap1.html">Bài 1: Sản phẩm</a></li>
+                    <li><a href="baitap2.html">Bài 2: Đăng ký</a></li>
+                    <li><a href="baitap3.html">Bài 3: Đồng hồ</a></li>
+                    
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Liên hệ</h3>
+                <p>Email: QUANG231A290025@st.vhu.edu.vn</p>
+                <p>Điện thoại: 0377 487 457</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NguyenDucQuang. Tất cả các quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Mảng sản phẩm
+        const products = [
+            { id: 1, name: "iPhone 14 Pro", price: 29990000, category: "Điện thoại", icon: "fas fa-mobile-alt" },
+            { id: 2, name: "MacBook Air M2", price: 32990000, category: "Laptop", icon: "fas fa-laptop" },
+            { id: 3, name: "Tai nghe Sony WH-1000XM5", price: 8990000, category: "Phụ kiện", icon: "fas fa-headphones" },
+            { id: 4, name: "Apple Watch Series 8", price: 12990000, category: "Đồng hồ", icon: "fas fa-clock" },
+            { id: 5, name: "iPad Pro 11 inch", price: 22990000, category: "Máy tính bảng", icon: "fas fa-tablet-alt" },
+            { id: 6, name: "Loa JBL Charge 5", price: 4990000, category: "Âm thanh", icon: "fas fa-volume-up" },
+            { id: 7, name: "Samsung Galaxy S23 Ultra", price: 28990000, category: "Điện thoại", icon: "fas fa-mobile-alt" },
+            { id: 8, name: "Dell XPS 13", price: 35990000, category: "Laptop", icon: "fas fa-laptop" }
+        ];
+        
+        // Hiển thị sản phẩm
+        function displayProducts(productsToShow) {
+            const productList = document.getElementById('productList');
+            const noResults = document.getElementById('noResults');
+            
+            if (productsToShow.length === 0) {
+                productList.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            productList.innerHTML = productsToShow.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="${product.icon}"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-category">${product.category}</p>
+                        <p class="product-price">${product.price.toLocaleString('vi-VN')}₫</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Tìm kiếm sản phẩm
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                displayProducts(products);
+                return;
+            }
+            
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm)
+            );
+            
+            displayProducts(filteredProducts);
+        }
+        
+        // Khởi tạo
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(products);
+            
+            const searchInput = document.getElementById('searchInput');
+            
+            // Tìm kiếm khi người dùng nhập
+            searchInput.addEventListener('input', searchProducts);
+            
+            // Debounce cho tìm kiếm (trong trường hợp real-time)
+            let debounceTimer;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(searchProducts, 300);
+            });
+        });
+    </script>
+</body>
+</html>

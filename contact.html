@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ - Bài Tập Thực Hành</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/avatar.jpg" alt="Avatar">
+                <span>231A290025</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                <li><a href="baitap1.html"><i class="fas fa-shopping-cart"></i> Bài 1: Sản Phẩm</a></li>
+                <li><a href="baitap2.html"><i class="fas fa-user-plus"></i> Bài 2: Đăng Ký</a></li>
+                <li><a href="baitap3.html"><i class="fas fa-clock"></i> Bài 3: Đồng Hồ</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> Giới Thiệu</a></li>
+                <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> Liên Hệ</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="exercise-container">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Quay lại trang chủ
+            </a>
+            
+            <h1 class="exercise-title">Liên Hệ</h1>
+            <p style="text-align: center; margin-bottom: 2rem;">Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Hãy liên hệ với chúng tôi qua các kênh dưới đây.</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2><i class="fas fa-info-circle"></i> Thông tin liên hệ</h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Địa chỉ</h4>
+                            <p>Trường Đại học Văn Hiến<br>
+                            624 Âu Cơ - Phường Bảy Hiền - TP Hồ Chí Minh</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Điện thoại</h4>
+                            <p>0377 487 457 (Hotline)<br>
+                        
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>QUANG231A290025@st.vhu.edu.vn (Hỗ trợ chung)<br>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="business-hours">
+                        <h4><i class="fas fa-clock"></i> Giờ làm việc</h4>
+                        <table class="hours-table">
+                            <tr>
+                                <td>Thứ 2 - Thứ 6</td>
+                                <td>8:00 - 17:00</td>
+                            </tr>
+                            <tr>
+                                <td>Thứ 7</td>
+                                <td>8:00 - 12:00</td>
+                            </tr>
+                            <tr>
+                                <td>Chủ nhật</td>
+                                <td>Nghỉ</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link facebook" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link github" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link linkedin" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:sinhvien@example.edu.vn" class="social-link email" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2><i class="fas fa-paper-plane"></i> Gửi tin nhắn</h2>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Điền thông tin vào form bên dưới, chúng tôi sẽ phản hồi trong thời gian sớm nhất.</p>
+                    
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">Họ và tên *</label>
+                                <input type="text" id="contactName" name="contactName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactEmail">Email *</label>
+                                <input type="email" id="contactEmail" name="contactEmail" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactSubject">Tiêu đề *</label>
+                            <input type="text" id="contactSubject" name="contactSubject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage">Nội dung *</label>
+                            <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">
+                            <i class="fas fa-paper-plane"></i> Gửi tin nhắn
+                        </button>
+                    </form>
+                    
+                    <div id="contactMessageStatus" class="contact-message"></div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <div style="text-align: center;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <h3>Vị trí của chúng tôi</h3>
+                        <p>Đây là vị trí trường Đại học Văn Hiến</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2><i class="fas fa-question-circle"></i> Câu hỏi thường gặp (FAQ)</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Làm thế nào để tôi có thể đóng góp vào dự án?</h4>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Bạn có thể đóng góp bằng cách fork repository trên GitHub, thực hiện các thay đổi và gửi pull request. Hoặc bạn có thể báo cáo lỗi, đề xuất tính năng mới qua email hoặc trang Issues trên GitHub.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Tôi có thể sử dụng mã nguồn này cho dự án cá nhân không?</h4>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Có, mã nguồn này là open-source và miễn phí cho mục đích học tập. Bạn có thể sử dụng, chỉnh sửa và phân phối lại với điều kiện giữ nguyên thông tin bản quyền gốc.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Làm cách nào để tôi học thêm về các kỹ thuật được sử dụng trong dự án?</h4>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Chúng tôi khuyến khích bạn đọc comments trong mã nguồn, tham khảo tài liệu chính thức của HTML, CSS, JavaScript. Bạn cũng có thể tham gia các diễn đàn, khóa học trực tuyến về lập trình web front-end.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Tôi gặp lỗi khi chạy dự án, phải làm sao?</h4>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Vui lòng kiểm tra console của trình duyệt để xem thông báo lỗi cụ thể. Nếu vẫn không giải quyết được, hãy liên hệ với chúng tôi qua email QUANG231A290025@st.vhu.edu.vn với mô tả chi tiết về lỗi và các bước để reproduce lỗi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bài Tập Thực Hành</h3>
+                <p>Trang web tổng hợp các bài tập thực hành môn Lập trình Web</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="baitap1.html">Bài 1: Sản phẩm</a></li>
+                    <li><a href="baitap2.html">Bài 2: Đăng ký</a></li>
+                    <li><a href="baitap3.html">Bài 3: Đồng hồ</a></li>
+                    
+                </ul>
+            </div>
+             <div class="footer-section">
+                <h3>Liên hệ</h3>
+                <p>Email: QUANG231A290025@st.vhu.edu.vn</p>
+                <p>Điện thoại: 0377 487 457</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 710-231A290025. Tất cả các quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    
+</body>
+</html>
