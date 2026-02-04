@@ -59,26 +59,26 @@
                 <div class="explanation-content">
                     <p><strong>1. Xử lý interval tránh memory leak:</strong></p>
                     <ul>
-                        <li>Luôn lưu reference của <code>setInterval</code> vào biến để có thể clear</li>
-                        <li>Clear interval trước khi tạo interval mới (tránh chồng interval)</li>
-                        <li>Clear interval khi component unmount (trong Single Page App)</li>
-                        <li>Trong bài này, clear interval khi pause/reset/hết giờ</li>
+                        <p>Luôn lưu reference của <code>setInterval</code> vào biến để có thể clear</p>
+                        <p>Clear interval trước khi tạo interval mới (tránh chồng interval)</p>
+                        <p>Clear interval khi component unmount (trong Single Page App)</p>
+                        <p>Trong bài này, clear interval khi pause/reset/hết giờ</p>
                     </ul>
                     
                     <p><strong>2. Tích hợp với Domain/Hosting khi deploy:</strong></p>
                     <ul>
-                        <li>Đồng bộ thời gian với server để tránh sai lệch do client</li>
-                        <li>Sử dụng API như <code>worldtimeapi.org</code> hoặc server time</li>
-                        <li>Tính toán offset giữa client và server time</li>
-                        <li>Trong bài này, demo bằng cách lấy server time giả định</li>
+                        <p>Đồng bộ thời gian với server để tránh sai lệch do client</p>
+                        <p>Sử dụng API như <code>worldtimeapi.org</code> hoặc server time</p>
+                        <p>Tính toán offset giữa client và server time</p>
+                        <p>Trong bài này, demo bằng cách lấy server time giả định</p>
                     </ul>
                     
                     <p><strong>3. Animation và UX:</strong></p>
                     <ul>
-                        <li>Thêm animation khi thời gian dưới 1 phút</li>
-                        <li>Hiển thị modal thay vì <code>alert()</code> để UX tốt hơn</li>
-                        <li>Cập nhật trạng thái nút bấm rõ ràng (enabled/disabled)</li>
-                        <li>Format thời gian đẹp (MM:SS) với leading zero</li>
+                        <p>Thêm animation khi thời gian dưới 1 phút</p>
+                        <p>Hiển thị modal thay vì <code>alert()</code> để UX tốt hơn</p>
+                        <p>Cập nhật trạng thái nút bấm rõ ràng (enabled/disabled)</p>
+                        <p>Format thời gian đẹp (MM:SS) với leading zero</p>
                     </ul>
                 </div>
             </div>
